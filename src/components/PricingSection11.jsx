@@ -1,6 +1,8 @@
 import React from "react";
 
 const verifiedBadgeIcon = "/icons/verified-badge-slate.png";
+const billboardNote =
+  "After 2 paid months";
 
 const comparisonFeatures = [
   { id: "collaboration", label: "Collaboration" },
@@ -8,7 +10,8 @@ const comparisonFeatures = [
   { id: "editorial", label: "Editorial" },
   { id: "placement", label: "Placement" },
   { id: "cover", label: "Cover" },
-  { id: "extras", label: "Extras" },
+  { id: "extras", label: "Discounts" },
+  { id: "billboard", label: "NYC Billboard" },
 ];
 
 const plans = [
@@ -18,11 +21,12 @@ const plans = [
     price: "49",
     desc: "Build your presence",
     features: {
-      collaboration: "TFP only",
+      collaboration: "Basic",
       promotion: "1-2 posts",
       editorial: "Included",
       placement: "Priority",
       cover: null,
+      billboard: null,
       extras: null,
     },
   },
@@ -38,6 +42,7 @@ const plans = [
       editorial: "Included",
       placement: "Priority",
       cover: "Opportunity",
+      billboard: null,
       extras: "25% off",
     },
   },
@@ -52,7 +57,8 @@ const plans = [
       editorial: "Included",
       placement: "Top priority",
       cover: "Included",
-      extras: "Billboard + 35% off",
+      billboard: "Starts month 3",
+      extras: "35% off",
     },
   },
 ];
@@ -201,93 +207,141 @@ export default function PremiumPricing() {
                     {comparisonFeatures.map((feature) => {
                       const featureValue = plan.features[feature.id];
                       const isIncluded = Boolean(featureValue);
+                      const isSpotlight = feature.id === "billboard" && isIncluded;
 
                       return (
                         <li
                           key={feature.id}
                           style={{
                             display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
+                            flexDirection: isSpotlight ? "column" : "row",
+                            alignItems: isSpotlight ? "stretch" : "center",
+                            justifyContent: isSpotlight ? "flex-start" : "space-between",
                             gap: "12px",
                             padding: "10px 12px",
                             borderRadius: "14px",
-                            background: isIncluded
+                            background: isSpotlight
+                              ? "linear-gradient(135deg, #0f172a, #334155)"
+                              : isIncluded
                               ? "linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,250,252,0.95))"
                               : "rgba(241,245,249,0.82)",
-                            border: isIncluded
+                            border: isSpotlight
+                              ? "1px solid rgba(148,163,184,0.3)"
+                              : isIncluded
                               ? "1px solid rgba(226,232,240,0.95)"
                               : "1px solid rgba(226,232,240,0.78)",
+                            boxShadow: isSpotlight
+                              ? "0 14px 28px rgba(15,23,42,0.18)"
+                              : "none",
                           }}
                         >
                           <div
                             style={{
                               display: "flex",
                               alignItems: "center",
-                              gap: "10px",
+                              justifyContent: "space-between",
+                              gap: "12px",
                               minWidth: 0,
+                              width: "100%",
                             }}
                           >
-                            {isIncluded ? (
-                              <span
-                                aria-hidden="true"
-                                style={{
-                                  display: "inline-flex",
-                                  alignItems: "center",
-                                  justifyContent: "center",
-                                  flexShrink: 0,
-                                }}
-                              >
-                                <img
-                                  src={verifiedBadgeIcon}
-                                  alt=""
-                                  style={{
-                                    width: "18px",
-                                    height: "18px",
-                                    display: "block",
-                                    opacity: 0.85,
-                                  }}
-                                />
-                              </span>
-                            ) : (
-                              <span
-                                aria-hidden="true"
-                                style={{
-                                  display: "inline-flex",
-                                  alignItems: "center",
-                                  justifyContent: "center",
-                                  flexShrink: 0,
-                                  color: "#94a3b8",
-                                  fontSize: "14px",
-                                  fontWeight: 600,
-                                  width: "18px",
-                                }}
-                              >
-                                -
-                              </span>
-                            )}
-                            <span
+                            <div
                               style={{
-                                fontSize: "13px",
-                                fontWeight: 500,
-                                color: isIncluded ? "#1e293b" : "#64748b",
-                                whiteSpace: "nowrap",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "10px",
+                                minWidth: 0,
                               }}
                             >
-                              {feature.label}
+                              {isIncluded ? (
+                                <span
+                                  aria-hidden="true"
+                                  style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    flexShrink: 0,
+                                  }}
+                                >
+                                  <img
+                                    src={verifiedBadgeIcon}
+                                    alt=""
+                                    style={{
+                                      width: "18px",
+                                      height: "18px",
+                                      display: "block",
+                                      opacity: isSpotlight ? 1 : 0.85,
+                                    }}
+                                  />
+                                </span>
+                              ) : (
+                                <span
+                                  aria-hidden="true"
+                                  style={{
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    flexShrink: 0,
+                                    color: "#94a3b8",
+                                    fontSize: "14px",
+                                    fontWeight: 600,
+                                    width: "18px",
+                                  }}
+                                >
+                                  -
+                                </span>
+                              )}
+                              <span
+                                style={{
+                                  fontSize: "13px",
+                                  fontWeight: 500,
+                                  color: isSpotlight
+                                    ? "#f8fafc"
+                                    : isIncluded
+                                    ? "#1e293b"
+                                    : "#64748b",
+                                  whiteSpace: "nowrap",
+                                }}
+                              >
+                                {feature.label}
+                              </span>
+                            </div>
+
+                            <span
+                              style={{
+                                fontSize: "12px",
+                                fontWeight: 600,
+                                color: isSpotlight
+                                  ? "rgba(226,232,240,0.92)"
+                                  : isIncluded
+                                  ? "#475569"
+                                  : "#94a3b8",
+                                textAlign: "right",
+                              }}
+                            >
+                              {featureValue || "Locked"}
                             </span>
                           </div>
 
-                          <span
-                            style={{
-                              fontSize: "12px",
-                              fontWeight: 600,
-                              color: isIncluded ? "#475569" : "#94a3b8",
-                              textAlign: "right",
-                            }}
-                          >
-                            {featureValue || "Locked"}
-                          </span>
+                          {isSpotlight && (
+                            <div
+                              style={{
+                                marginLeft: "28px",
+                                width: "fit-content",
+                                padding: "4px 10px",
+                                borderRadius: "999px",
+                                fontSize: "10px",
+                                lineHeight: "1.2",
+                                fontWeight: 600,
+                                letterSpacing: "0.02em",
+                                color: "rgba(241,245,249,0.88)",
+                                background: "rgba(255,255,255,0.08)",
+                                border: "1px solid rgba(148,163,184,0.18)",
+                              }}
+                            >
+                              {billboardNote}
+                            </div>
+                          )}
                         </li>
                       );
                     })}
