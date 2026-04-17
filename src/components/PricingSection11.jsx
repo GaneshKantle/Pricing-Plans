@@ -1,18 +1,30 @@
 import React from "react";
 
+const verifiedBadgeIcon = "/icons/verified-badge-slate.png";
+
+const comparisonFeatures = [
+  { id: "collaboration", label: "Collaboration" },
+  { id: "promotion", label: "Promotion" },
+  { id: "editorial", label: "Editorial" },
+  { id: "placement", label: "Placement" },
+  { id: "cover", label: "Cover" },
+  { id: "extras", label: "Extras" },
+];
+
 const plans = [
   {
     title: "Growth",
     emoji: "👋",
     price: "49",
     desc: "Build your presence",
-    features: [
-      "Basic Collaborations (TFP)",
-      "Instagram Promotion (1–2 posts)",
-      "Monthly Magazine Feature",
-      "Interview Feature",
-      "Priority Placement",
-    ],
+    features: {
+      collaboration: "TFP only",
+      promotion: "1-2 posts",
+      editorial: "Included",
+      placement: "Priority",
+      cover: null,
+      extras: null,
+    },
   },
   {
     title: "Elite",
@@ -20,40 +32,34 @@ const plans = [
     price: "99",
     desc: "Grow your brand",
     popular: true,
-    features: [
-      "Priority Collaborations",
-      "Instagram Promotion (strong push)",
-      "Monthly Magazine Feature",
-      "Interview Feature",
-      "Priority Placement",
-      "Cover Feature Opportunity",
-      "25% OFF on services & magazine purchases",
-    ],
+    features: {
+      collaboration: "Priority",
+      promotion: "Strong push",
+      editorial: "Included",
+      placement: "Priority",
+      cover: "Opportunity",
+      extras: "25% off",
+    },
   },
   {
     title: "Pro",
     emoji: "💎",
     price: "149",
     desc: "Scale & go premium",
-    features: [
-      "Paid Collaboration Access",
-      "Photoshoot Opportunities",
-      "Instagram Promotion (max push)",
-      "Monthly Magazine Feature",
-      "Interview Feature",
-      "Top Priority Placement",
-      "Cover Feature",
-      "NYC Billboard (every 3 months)",
-      "Dedicated Support",
-      "35% OFF on services & magazine purchases",
-    ],
+    features: {
+      collaboration: "Paid access",
+      promotion: "Max push",
+      editorial: "Included",
+      placement: "Top priority",
+      cover: "Included",
+      extras: "Billboard + 35% off",
+    },
   },
 ];
 
 export default function PremiumPricing() {
   return (
     <>
-      {/* FONT */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
@@ -70,18 +76,15 @@ export default function PremiumPricing() {
         }}
       >
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          
-          {/* HEADER */}
           <div style={{ textAlign: "center", marginBottom: "60px" }}>
             <h1 style={{ fontSize: "38px", fontWeight: 600, color: "#0f172a" }}>
               Plans that elevate your brand
             </h1>
             <p style={{ color: "#64748b", marginTop: "10px" }}>
-              Premium collaborations, visibility, and growth — designed for creators.
+              Premium collaborations, visibility, and growth - designed for creators.
             </p>
           </div>
 
-          {/* CARDS */}
           <div
             style={{
               display: "flex",
@@ -107,17 +110,11 @@ export default function PremiumPricing() {
                     position: "relative",
                     cursor: "pointer",
                     transition: "transform 0.3s ease, box-shadow 0.3s ease",
-
-                    // ✨ GLASS EFFECT
                     background: "rgba(255,255,255,0.65)",
                     backdropFilter: "blur(14px)",
                     border: "1px solid rgba(255,255,255,0.4)",
-
-                    // ✨ DEPTH
                     boxShadow: baseShadow,
-
                     transform: baseTransform,
-
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = isMiddle
@@ -131,7 +128,6 @@ export default function PremiumPricing() {
                     e.currentTarget.style.boxShadow = baseShadow;
                   }}
                 >
-                  {/* MOST POPULAR */}
                   {plan.popular && (
                     <div
                       style={{
@@ -152,7 +148,6 @@ export default function PremiumPricing() {
                     </div>
                   )}
 
-                  {/* TITLE */}
                   <h3 style={{ fontSize: "20px", fontWeight: 600, color: "#0f172a" }}>
                     {plan.emoji} {plan.title}
                   </h3>
@@ -161,15 +156,13 @@ export default function PremiumPricing() {
                     {plan.desc}
                   </p>
 
-                  {/* PRICE */}
-                  <h2 style={{ fontSize: "44px", marginBottom: "20px" , color: "#0f172a"}}>
+                  <h2 style={{ fontSize: "44px", marginBottom: "20px", color: "#0f172a" }}>
                     ${plan.price}
                     <span style={{ fontSize: "14px", color: "#64748b" }}>
                       /month
                     </span>
                   </h2>
 
-                  {/* BUTTON */}
                   <button
                     style={{
                       width: "100%",
@@ -179,7 +172,6 @@ export default function PremiumPricing() {
                       cursor: "pointer",
                       fontWeight: 500,
                       transition: "0.3s",
-
                       background: plan.popular
                         ? "linear-gradient(135deg, #6366f1, #3b82f6)"
                         : "#e2e8f0",
@@ -197,20 +189,108 @@ export default function PremiumPricing() {
                     Get Started
                   </button>
 
-                  {/* FEATURES */}
                   <ul
                     style={{
-                      marginTop: "25px",
+                      marginTop: "22px",
                       padding: 0,
                       listStyle: "none",
-                      fontSize: "14px",
-                      color: "#334155",
-                      lineHeight: "1.9",
+                      display: "grid",
+                      gap: "10px",
                     }}
                   >
-                    {plan.features.map((f, idx) => (
-                      <li key={idx}>• {f}</li>
-                    ))}
+                    {comparisonFeatures.map((feature) => {
+                      const featureValue = plan.features[feature.id];
+                      const isIncluded = Boolean(featureValue);
+
+                      return (
+                        <li
+                          key={feature.id}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            gap: "12px",
+                            padding: "10px 12px",
+                            borderRadius: "14px",
+                            background: isIncluded
+                              ? "linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,250,252,0.95))"
+                              : "rgba(241,245,249,0.82)",
+                            border: isIncluded
+                              ? "1px solid rgba(226,232,240,0.95)"
+                              : "1px solid rgba(226,232,240,0.78)",
+                          }}
+                        >
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "10px",
+                              minWidth: 0,
+                            }}
+                          >
+                            {isIncluded ? (
+                              <span
+                                aria-hidden="true"
+                                style={{
+                                  display: "inline-flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  flexShrink: 0,
+                                }}
+                              >
+                                <img
+                                  src={verifiedBadgeIcon}
+                                  alt=""
+                                  style={{
+                                    width: "18px",
+                                    height: "18px",
+                                    display: "block",
+                                    opacity: 0.85,
+                                  }}
+                                />
+                              </span>
+                            ) : (
+                              <span
+                                aria-hidden="true"
+                                style={{
+                                  display: "inline-flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  flexShrink: 0,
+                                  color: "#94a3b8",
+                                  fontSize: "14px",
+                                  fontWeight: 600,
+                                  width: "18px",
+                                }}
+                              >
+                                -
+                              </span>
+                            )}
+                            <span
+                              style={{
+                                fontSize: "13px",
+                                fontWeight: 500,
+                                color: isIncluded ? "#1e293b" : "#64748b",
+                                whiteSpace: "nowrap",
+                              }}
+                            >
+                              {feature.label}
+                            </span>
+                          </div>
+
+                          <span
+                            style={{
+                              fontSize: "12px",
+                              fontWeight: 600,
+                              color: isIncluded ? "#475569" : "#94a3b8",
+                              textAlign: "right",
+                            }}
+                          >
+                            {featureValue || "Locked"}
+                          </span>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               );
