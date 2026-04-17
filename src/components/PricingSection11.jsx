@@ -92,6 +92,10 @@ export default function PremiumPricing() {
           >
             {plans.map((plan, i) => {
               const isMiddle = i === 1;
+              const baseTransform = isMiddle ? "scale(1.06)" : "scale(1)";
+              const baseShadow = isMiddle
+                ? "0 25px 60px rgba(0,0,0,0.08)"
+                : "0 10px 30px rgba(0,0,0,0.05)";
 
               return (
                 <div
@@ -102,7 +106,7 @@ export default function PremiumPricing() {
                     borderRadius: "20px",
                     position: "relative",
                     cursor: "pointer",
-                    transition: "all 0.4s ease",
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
 
                     // ✨ GLASS EFFECT
                     background: "rgba(255,255,255,0.65)",
@@ -110,27 +114,21 @@ export default function PremiumPricing() {
                     border: "1px solid rgba(255,255,255,0.4)",
 
                     // ✨ DEPTH
-                    boxShadow: isMiddle
-                      ? "0 25px 60px rgba(0,0,0,0.08)"
-                      : "0 10px 30px rgba(0,0,0,0.05)",
+                    boxShadow: baseShadow,
 
-                    transform: isMiddle
-                      ? "scale(1.06)"
-                      : "scale(1)",
+                    transform: baseTransform,
 
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-10px) scale(1.05)";
+                    e.currentTarget.style.transform = isMiddle
+                      ? "translateY(-4px) scale(1.055)"
+                      : "translateY(-4px) scale(1.015)";
                     e.currentTarget.style.boxShadow =
-                      "0 30px 70px rgba(0,0,0,0.12)";
+                      "0 18px 40px rgba(0,0,0,0.09)";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = isMiddle
-                      ? "scale(1.06)"
-                      : "scale(1)";
-                    e.currentTarget.style.boxShadow = isMiddle
-                      ? "0 25px 60px rgba(0,0,0,0.08)"
-                      : "0 10px 30px rgba(0,0,0,0.05)";
+                    e.currentTarget.style.transform = baseTransform;
+                    e.currentTarget.style.boxShadow = baseShadow;
                   }}
                 >
                   {/* MOST POPULAR */}
