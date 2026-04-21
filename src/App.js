@@ -34,8 +34,12 @@ function App() {
           <div className="footer-grid">
             <div className="footer-column">
               <h3>Contact</h3>
-              <p>Phone: +44 7412 806594</p>
-              <p>Email: submit@uncovermagazines.com</p>
+              <p>
+                Phone: <a href="tel:+447412806594">+44 7412 806594</a>
+              </p>
+              <p>
+                Email: <a href="mailto:submit@uncovermagazines.com">submit@uncovermagazines.com</a>
+              </p>
               <p>
                 Address:
                 <br />
@@ -47,10 +51,10 @@ function App() {
             <div className="footer-column footer-connect">
               <h3>Connect</h3>
               <div className="social-links" aria-label="Social links">
-                <a href="https://www.facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
-                  f
+                <a href="https://www.facebook.com/uncovermagazines" target="_blank" rel="noreferrer" aria-label="Facebook">
+                  fb
                 </a>
-                <a href="https://www.instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <a href="https://www.instagram.com/uncovermagazines" target="_blank" rel="noreferrer" aria-label="Instagram">
                   ig
                 </a>
               </div>
