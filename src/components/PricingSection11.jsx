@@ -169,31 +169,6 @@ export default function PremiumPricing() {
                     </span>
                   </h2>
 
-                  <button
-                    style={{
-                      width: "100%",
-                      padding: "12px",
-                      borderRadius: "12px",
-                      border: "none",
-                      cursor: "pointer",
-                      fontWeight: 500,
-                      transition: "0.3s",
-                      background: plan.popular
-                        ? "linear-gradient(135deg, #6366f1, #3b82f6)"
-                        : "#e2e8f0",
-                      color: plan.popular ? "#fff" : "#0f172a",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = "scale(1.03)";
-                      e.currentTarget.style.opacity = "0.9";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = "scale(1)";
-                      e.currentTarget.style.opacity = "1";
-                    }}
-                  >
-                    Get Started
-                  </button>
 
                   <ul
                     style={{
@@ -346,6 +321,34 @@ export default function PremiumPricing() {
                       );
                     })}
                   </ul>
+
+
+                  <button
+                        style={{
+                          marginTop: "20px",
+                          width: "100%",
+                          padding: "12px",
+                          borderRadius: "12px",
+                          border: "none",
+                          cursor: "pointer",
+                          fontWeight: 500,
+                          transition: "0.3s",
+                          background: plan.popular
+                            ? "linear-gradient(135deg, #6366f1, #3b82f6)"
+                            : "#e2e8f0",
+                          color: plan.popular ? "#fff" : "#0f172a",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = "scale(1.03)";
+                          e.currentTarget.style.opacity = "0.9";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = "scale(1)";
+                          e.currentTarget.style.opacity = "1";
+                        }}
+                      >
+                        Get Started
+                      </button>
                 </div>
               );
             })}
