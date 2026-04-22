@@ -11,11 +11,11 @@ function App() {
             <span className="logo-text">COVER</span>
           </a>
           <nav className="site-nav" aria-label="Main navigation">
-            <a href="/">Home</a>
-            <a href="/submission">Submission</a>
-            <a href="/store">Store</a>
-            <a href="/blog">Blog</a>
-            <a href="/become-an-affiliate">Become An Affiliate</a>
+            <a href="https://www.uncovermagazines.com/">Home</a>
+            <a href="https://www.uncovermagazines.com/submission">Submission</a>
+            <a href="https://www.uncovermagazines.com/mag-store">Store</a>
+            <a href="https://www.uncovermagazines.com/blog">Blog</a>
+            <a href="https://www.uncovermagazines.com/become-an-affiliate">Become An Affiliate</a>
           </nav>
         </div>
       </header>
