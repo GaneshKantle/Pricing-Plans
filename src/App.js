@@ -51,10 +51,10 @@ function App() {
             <div className="footer-column footer-connect">
               <h3>Connect</h3>
               <div className="social-links" aria-label="Social links">
-                <a href="https://www.facebook.com/uncovermagazines" target="_blank" rel="noreferrer" aria-label="Facebook">
+                <a href="https://www.facebook.com/uncovermagazine/" target="_blank" rel="noreferrer" aria-label="Facebook">
                   fb
                 </a>
-                <a href="https://www.instagram.com/uncovermagazines" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <a href="https://www.instagram.com/uncover.magazines" target="_blank" rel="noreferrer" aria-label="Instagram">
                   ig
                 </a>
               </div>
