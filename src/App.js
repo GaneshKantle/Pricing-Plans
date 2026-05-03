@@ -45,7 +45,7 @@ function App() {
                 <br />
                 30n Gould St, Ste R, Sheridan,
                 <br />
-                WY 82801, USA
+                WY 82801, USA 
               </p>
             </div>
             <div className="footer-column footer-connect">
