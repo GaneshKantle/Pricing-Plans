@@ -225,11 +225,12 @@ export default function PremiumPricing() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
-
-        * {
+        .pricing-section-shell,
+        .pricing-section-shell *,
+        .checkout-overlay,
+        .checkout-overlay * {
           box-sizing: border-box;
-          font-family: 'Inter', sans-serif;
+          font-family: 'Manrope', sans-serif;
         }
 
         .checkout-overlay {
@@ -240,8 +241,8 @@ export default function PremiumPricing() {
           align-items: center;
           justify-content: center;
           padding: 24px;
-          background: rgba(15, 23, 42, 0.54);
-          backdrop-filter: blur(7px);
+          background: rgba(24, 33, 39, 0.18);
+          backdrop-filter: blur(10px);
         }
 
         .checkout-modal {
@@ -249,12 +250,12 @@ export default function PremiumPricing() {
           width: min(100%, 760px);
           max-height: min(92vh, 920px);
           overflow-y: auto;
-          border-radius: 28px;
-          border: 1px solid rgba(226, 232, 240, 0.8);
-          background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+          border-radius: 24px;
+          border: 1px solid #e2e8ec;
+          background: #ffffff;
           padding: 28px;
-          box-shadow: 0 28px 60px rgba(15, 23, 42, 0.24);
-          color: #0f172a;
+          box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
+          color: #182127;
         }
 
         .checkout-close {
@@ -263,10 +264,10 @@ export default function PremiumPricing() {
           right: 16px;
           width: 40px;
           height: 40px;
-          border: 1px solid rgba(148, 163, 184, 0.28);
+          border: 1px solid #e2e8ec;
           border-radius: 999px;
-          background: rgba(255, 255, 255, 0.88);
-          color: #334155;
+          background: #ffffff;
+          color: #60707a;
           font-size: 1.2rem;
           cursor: pointer;
         }
@@ -277,21 +278,21 @@ export default function PremiumPricing() {
           font-weight: 600;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: #64748b;
+          color: #60707a;
         }
 
         .checkout-title {
           margin: 0;
-          font-size: clamp(1.7rem, 2vw, 2.2rem);
+          font-size: clamp(1.5rem, 2vw, 2rem);
           font-weight: 600;
-          color: #0f172a;
+          color: #182127;
         }
 
         .checkout-subtitle {
           margin: 12px 0 0;
           max-width: 560px;
-          color: #64748b;
-          font-size: 0.96rem;
+          color: #60707a;
+          font-size: 0.94rem;
           line-height: 1.6;
         }
 
@@ -309,8 +310,8 @@ export default function PremiumPricing() {
           min-height: 32px;
           padding: 0 14px;
           border-radius: 999px;
-          background: #e2e8f0;
-          color: #0f172a;
+          background: #f3f5f6;
+          color: #182127;
           font-size: 0.78rem;
           font-weight: 600;
           letter-spacing: 0.04em;
@@ -318,8 +319,8 @@ export default function PremiumPricing() {
         }
 
         .checkout-chip-muted {
-          background: rgba(148, 163, 184, 0.12);
-          color: #475569;
+          background: #fafbfb;
+          color: #60707a;
         }
 
         .checkout-form {
@@ -347,19 +348,19 @@ export default function PremiumPricing() {
           font-weight: 600;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: #64748b;
+          color: #60707a;
         }
 
         .checkout-field input,
         .checkout-field select,
         .checkout-field textarea {
           width: 100%;
-          border: 1px solid #dbe3ef;
+          border: 1px solid #e2e8ec;
           border-radius: 14px;
           padding: 13px 14px;
           background: #ffffff;
-          color: #0f172a;
-          font-size: 0.96rem;
+          color: #182127;
+          font-size: 0.94rem;
           outline: none;
           transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
@@ -367,8 +368,8 @@ export default function PremiumPricing() {
         .checkout-field input:focus,
         .checkout-field select:focus,
         .checkout-field textarea:focus {
-          border-color: #94a3b8;
-          box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.14);
+          border-color: #b6c2c9;
+          box-shadow: 0 0 0 4px rgba(182, 194, 201, 0.18);
         }
 
         .checkout-field textarea {
@@ -401,13 +402,14 @@ export default function PremiumPricing() {
         }
 
         .checkout-button-primary {
-          background: linear-gradient(135deg, #0f172a, #334155);
+          background: #182127;
           color: #ffffff;
         }
 
         .checkout-button-secondary {
-          background: #e2e8f0;
-          color: #0f172a;
+          background: #f3f5f6;
+          color: #182127;
+          border: 1px solid #e2e8ec;
         }
 
         .checkout-button:disabled {
@@ -430,9 +432,9 @@ export default function PremiumPricing() {
         }
 
         .checkout-status-success {
-          background: rgba(226, 232, 240, 0.72);
-          color: #0f172a;
-          border: 1px solid rgba(148, 163, 184, 0.18);
+          background: #f7f8f8;
+          color: #182127;
+          border: 1px solid #e2e8ec;
         }
 
         .checkout-redirect-wrap {
@@ -444,22 +446,34 @@ export default function PremiumPricing() {
         .checkout-redirect-panel {
           border-radius: 20px;
           padding: 18px;
-          background: linear-gradient(180deg, #f8fafc, #eef2ff);
-          border: 1px solid rgba(226, 232, 240, 0.95);
+          background: #fafbfb;
+          border: 1px solid #e2e8ec;
         }
 
         .checkout-redirect-title {
           margin: 0;
           font-size: 1rem;
           font-weight: 600;
-          color: #0f172a;
+          color: #182127;
         }
 
         .checkout-redirect-copy {
           margin: 8px 0 0;
-          color: #64748b;
+          color: #60707a;
           font-size: 0.92rem;
           line-height: 1.55;
+        }
+
+        .plans-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 20px;
+          align-items: stretch;
+        }
+
+        .plan-card {
+          width: 100%;
+          min-width: 0;
         }
 
         @media (max-width: 720px) {
@@ -486,60 +500,98 @@ export default function PremiumPricing() {
             align-items: center;
           }
         }
+
+        @media (max-width: 960px) {
+          .plans-grid {
+            grid-template-columns: 1fr;
+          }
+        }
       `}</style>
 
       <section
+        className="pricing-section-shell"
         style={{
-          background: "linear-gradient(180deg, #f8fafc, #eef2ff)",
-          padding: "80px 20px",
+          background: "transparent",
+          padding: "0",
         }}
       >
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <h1 style={{ fontSize: "38px", fontWeight: 600, color: "#0f172a" }}>
-              Plans that elevate your brand
+        <div
+          style={{
+            maxWidth: "100%",
+            margin: "0 auto",
+            padding: "28px",
+            borderRadius: "24px",
+            background: "#ffffff",
+            border: "1px solid #e2e8ec",
+            boxShadow: "0 16px 36px rgba(15, 23, 42, 0.05)",
+          }}
+        >
+          <div style={{ textAlign: "center", marginBottom: "40px" }}>
+            <p
+              style={{
+                margin: 0,
+                color: "#60707a",
+                fontSize: "12px",
+                fontWeight: 700,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+              }}
+            >
+              Service Plans
+            </p>
+            <h1
+              style={{
+                margin: "10px 0 0",
+                fontSize: "clamp(1.9rem, 4vw, 2.5rem)",
+                fontWeight: 700,
+                letterSpacing: "-0.03em",
+                color: "#182127",
+              }}
+            >
+              Plans for steady brand growth
             </h1>
-            <p style={{ color: "#64748b", marginTop: "10px" }}>
-              Premium collaborations, visibility, and growth - designed for creators.
+            <p
+              style={{
+                color: "#60707a",
+                margin: "12px auto 0",
+                maxWidth: "620px",
+                lineHeight: 1.7,
+                fontSize: "0.95rem",
+              }}
+            >
+              Compare the options, choose the level that fits best, and continue with a simple
+              intake flow.
             </p>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "30px",
-              flexWrap: "wrap",
-            }}
-          >
+          <div className="plans-grid">
             {plans.map((plan, index) => {
               const isMiddle = index === 1;
-              const baseTransform = isMiddle ? "scale(1.06)" : "scale(1)";
+              const baseTransform = isMiddle ? "scale(1.015)" : "scale(1)";
               const baseShadow = isMiddle
-                ? "0 25px 60px rgba(0,0,0,0.08)"
-                : "0 10px 30px rgba(0,0,0,0.05)";
+                ? "0 18px 34px rgba(15, 23, 42, 0.08)"
+                : "0 10px 24px rgba(15, 23, 42, 0.05)";
 
               return (
                 <div
                   key={plan.id}
+                  className="plan-card"
                   style={{
-                    width: "320px",
-                    padding: "28px",
+                    padding: "24px",
                     borderRadius: "20px",
                     position: "relative",
                     cursor: "pointer",
                     transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                    background: "rgba(255,255,255,0.65)",
-                    backdropFilter: "blur(14px)",
-                    border: "1px solid rgba(255,255,255,0.4)",
+                    background: "#fafbfb",
+                    border: "1px solid #e2e8ec",
                     boxShadow: baseShadow,
                     transform: baseTransform,
                   }}
                   onMouseEnter={(event) => {
                     event.currentTarget.style.transform = isMiddle
-                      ? "translateY(-4px) scale(1.055)"
-                      : "translateY(-4px) scale(1.015)";
-                    event.currentTarget.style.boxShadow = "0 18px 40px rgba(0,0,0,0.09)";
+                      ? "translateY(-3px) scale(1.02)"
+                      : "translateY(-3px) scale(1.01)";
+                    event.currentTarget.style.boxShadow = "0 14px 28px rgba(15, 23, 42, 0.08)";
                   }}
                   onMouseLeave={(event) => {
                     event.currentTarget.style.transform = baseTransform;
@@ -553,28 +605,30 @@ export default function PremiumPricing() {
                         top: "-14px",
                         left: "50%",
                         transform: "translateX(-50%)",
-                        background: "linear-gradient(135deg, #6366f1, #3b82f6)",
+                        background: "#182127",
                         color: "#fff",
                         fontSize: "12px",
                         padding: "6px 14px",
                         borderRadius: "999px",
-                        fontWeight: 500,
-                        boxShadow: "0 10px 20px rgba(99,102,241,0.3)",
+                        fontWeight: 600,
+                        boxShadow: "0 10px 20px rgba(15, 23, 42, 0.12)",
                       }}
                     >
                       Most popular
                     </div>
                   )}
 
-                  <h3 style={{ fontSize: "20px", fontWeight: 600, color: "#0f172a" }}>
-                    {plan.emoji} {plan.title}
+                  <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#182127" }}>
+                    {plan.title}
                   </h3>
 
-                  <p style={{ color: "#64748b", margin: "8px 0 18px" }}>{plan.desc}</p>
+                  <p style={{ color: "#60707a", margin: "8px 0 18px", fontSize: "0.94rem" }}>
+                    {plan.desc}
+                  </p>
 
-                  <h2 style={{ fontSize: "44px", marginBottom: "20px", color: "#0f172a" }}>
+                  <h2 style={{ fontSize: "36px", marginBottom: "18px", color: "#182127" }}>
                     ${plan.price}
-                    <span style={{ fontSize: "14px", color: "#64748b" }}>/month</span>
+                    <span style={{ fontSize: "13px", color: "#60707a" }}>/month</span>
                   </h2>
 
                   <ul
@@ -603,16 +657,16 @@ export default function PremiumPricing() {
                             padding: "10px 12px",
                             borderRadius: "14px",
                             background: isSpotlight
-                              ? "linear-gradient(135deg, #0f172a, #334155)"
+                              ? "#182127"
                               : isIncluded
-                              ? "linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,250,252,0.95))"
-                              : "rgba(241,245,249,0.82)",
+                              ? "#ffffff"
+                              : "#f3f5f6",
                             border: isSpotlight
-                              ? "1px solid rgba(148,163,184,0.3)"
+                              ? "1px solid #182127"
                               : isIncluded
-                              ? "1px solid rgba(226,232,240,0.95)"
-                              : "1px solid rgba(226,232,240,0.78)",
-                            boxShadow: isSpotlight ? "0 14px 28px rgba(15,23,42,0.18)" : "none",
+                              ? "1px solid #e2e8ec"
+                              : "1px solid #e2e8ec",
+                            boxShadow: isSpotlight ? "0 10px 20px rgba(15, 23, 42, 0.12)" : "none",
                           }}
                         >
                           <div
@@ -678,9 +732,9 @@ export default function PremiumPricing() {
                                   color: isSpotlight
                                     ? "#f8fafc"
                                     : isIncluded
-                                    ? "#1e293b"
-                                    : "#64748b",
-                                  whiteSpace: "nowrap",
+                                    ? "#182127"
+                                    : "#60707a",
+                                  lineHeight: 1.35,
                                 }}
                               >
                                 {feature.label}
@@ -694,7 +748,7 @@ export default function PremiumPricing() {
                                 color: isSpotlight
                                   ? "rgba(226,232,240,0.92)"
                                   : isIncluded
-                                  ? "#475569"
+                                  ? "#60707a"
                                   : "#94a3b8",
                                 textAlign: "right",
                               }}
@@ -716,7 +770,7 @@ export default function PremiumPricing() {
                                 letterSpacing: "0.02em",
                                 color: "rgba(241,245,249,0.88)",
                                 background: "rgba(255,255,255,0.08)",
-                                border: "1px solid rgba(148,163,184,0.18)",
+                                border: "1px solid rgba(255,255,255,0.16)",
                               }}
                             >
                               {billboardNote}
@@ -734,14 +788,12 @@ export default function PremiumPricing() {
                       width: "100%",
                       padding: "12px",
                       borderRadius: "12px",
-                      border: "none",
                       cursor: "pointer",
-                      fontWeight: 500,
+                      fontWeight: 600,
                       transition: "0.3s",
-                      background: plan.popular
-                        ? "linear-gradient(135deg, #6366f1, #3b82f6)"
-                        : "#e2e8f0",
-                      color: plan.popular ? "#fff" : "#0f172a",
+                      background: plan.popular ? "#182127" : "#ffffff",
+                      color: plan.popular ? "#fff" : "#182127",
+                      border: "1px solid #e2e8ec",
                     }}
                     onClick={() => openCheckout(plan.id)}
                     onMouseEnter={(event) => {
@@ -753,7 +805,7 @@ export default function PremiumPricing() {
                       event.currentTarget.style.opacity = "1";
                     }}
                   >
-                    Get Started
+                    Select Plan
                   </button>
                 </div>
               );
